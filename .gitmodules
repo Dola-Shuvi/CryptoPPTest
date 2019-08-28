@@ -1,0 +1,3 @@
+[submodule "CryptoPPTest/CryptoPP"]
+	path = CryptoPPTest/CryptoPP
+	url = https://github.com/weidai11/cryptopp.git
