@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CryptoPPTest", "CryptoPPTest\CryptoPPTest.vcxproj", "{5B3DD37F-3A27-4A65-ADA9-662CB85C9887}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C39F4B46-6E89-4074-902E-CA57073044D2} = {C39F4B46-6E89-4074-902E-CA57073044D2}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cryptlib", "CryptoPPTest\CryptoPP\cryptlib.vcxproj", "{C39F4B46-6E89-4074-902E-CA57073044D2}"
 EndProject
@@ -60,10 +57,10 @@ Global
 		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release|x64.Build.0 = Release|x64
 		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release|x86.ActiveCfg = Release|Win32
 		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release|x86.Build.0 = Release|Win32
-		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x64.ActiveCfg = Release-zopfli|x64
-		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x64.Build.0 = Release-zopfli|x64
-		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x86.ActiveCfg = Release-zopfli|Win32
-		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x86.Build.0 = Release-zopfli|Win32
+		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x64.ActiveCfg = Release|x64
+		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x64.Build.0 = Release|x64
+		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x86.ActiveCfg = Release|Win32
+		{C39F4B46-6E89-4074-902E-CA57073044D2}.Release-zopfli|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
