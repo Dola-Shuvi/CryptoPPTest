@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <random>
+#include <numeric>
 using namespace std;
 
 #include "cryptlib.h"
@@ -20,14 +22,20 @@ using namespace CryptoPP;
 
 
 
+
 int main(int argc, char* argv[])
 {
 	byte key[AES::MAX_KEYLENGTH];
 	byte iv[AES::BLOCKSIZE];
 
+	cout << to_string(chrono::system_clock::now().time_since_epoch().count()) << endl;
 
 	memcpy(key, generateSHA256(argv[1]), sizeof(key));
 	memcpy(iv, key, sizeof(iv));
+
+	vector<unsigned int> noise = generateNoise(generateSHA256("Harambe"), 8, 128);
+	std::copy(noise.begin(), noise.end(), std::ostream_iterator<unsigned int>(std::cout, " "));
+	cout << endl;
 
 	//vector<unsigned char> plain = { 65, 116, 116, 97, 99, 107, 32, 97, 116, 32, 100, 97, 119, 110, 33, 65, 116, 116, 97, 99, 107, 32, 97, 116, 32, 100, 97, 119, 110, 33, 65, 116, 116, 97, 99, 107, 32, 97, 116, 32, 100, 97, 119, 110, 33 };
 	
@@ -144,6 +152,7 @@ vector<byte> zlibCompress(vector<byte> input) {
 		zipper.Get(&compressed[0], compressed.size());
 		return compressed;
 	}
+	exit(1);
 }
 
 vector<byte> zlibDecompress(vector<byte> input) {
@@ -193,7 +202,25 @@ vector<byte> zopfliCompress(vector<byte> input) {
 }
 #endif // USEZOPFLI;
 
+vector<unsigned int> generateNoise(byte* seedPointer, unsigned int dataLength, unsigned int imageLength) {
+	byte seed[SHA256::DIGESTSIZE];
+	memcpy(seed, seedPointer, sizeof(seed));
+	
+	seed_seq seed2(begin(seed), end(seed));
+	mt19937 g(seed2);
 
+	vector<unsigned int> noise(imageLength);
+	iota(begin(noise), end(noise), 0);
+
+	unsigned int offset = 32;
+	noise.erase(noise.begin(), noise.begin() + offset);
+
+	shuffle(begin(noise), end(noise), g);
+
+	noise.resize((size_t)((uint64_t)dataLength * 8U));
+
+	return noise;
+}
 
 vector<unsigned char> readAllBytes(string fileName) {
 	//Open file

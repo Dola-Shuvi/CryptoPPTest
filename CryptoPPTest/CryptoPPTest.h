@@ -15,4 +15,6 @@ vector<byte> zlibDecompress(vector<byte> input);
 vector<byte> zopfliCompress(vector<byte> input);
 #endif // USEZOPFLI
 
+vector<unsigned int> generateNoise(byte* seedPointer, unsigned int dataLength, unsigned int imageLength);
+
 vector<unsigned char> readAllBytes(string fileName);
